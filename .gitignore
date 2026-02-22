@@ -1,0 +1,9 @@
+/.pony_test/
+/.vscode/
+/build/
+/pony-lint/version.pony
+/_corral/
+/_repos/
+lock.json
+lock.json.claude
+.claude
