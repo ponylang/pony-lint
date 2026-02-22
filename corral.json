@@ -1,0 +1,9 @@
+{
+  "info": {
+    "name": "pony-lint",
+    "description": "A linter for Pony",
+    "version": "0.0.0"
+  },
+  "packages": [],
+  "deps": []
+}
