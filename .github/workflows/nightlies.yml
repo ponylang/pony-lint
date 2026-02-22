@@ -136,15 +136,15 @@ jobs:
     runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: install ponyc
-        run: bash .ci-scripts/macos-x86-install-pony-tools.bash release
+      - name: install pony tools
+        run: bash .ci-scripts/macos-install-pony-tools.bash release
       - name: brew install dependencies
         run: brew install coreutils
       - name: pip install dependencies
         run: pip3 install --break-system-packages --upgrade cloudsmith-cli
       - name: Build and upload
         run: |
-          export PATH="/tmp/ponyc/bin/:/tmp/corral/bin/:/Library/Frameworks/Python.framework/Versions/3.11/bin/:$PATH"
+          export PATH="$HOME/.local/share/ponyup/bin/:/Library/Frameworks/Python.framework/Versions/3.11/bin/:$PATH"
           bash .ci-scripts/release/x86-64-apple-darwin-nightly.bash
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
@@ -165,15 +165,15 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: install ponyc
-        run: bash .ci-scripts/macos-arm64-install-pony-tools.bash release
+      - name: install pony tools
+        run: bash .ci-scripts/macos-install-pony-tools.bash release
       - name: brew install dependencies
         run: brew install coreutils
       - name: pip install dependencies
         run: pip3 install --upgrade --break-system-packages cloudsmith-cli
       - name: Build and upload
         run: |
-          export PATH="/tmp/ponyc/bin/:/tmp/corral/bin/:/Library/Frameworks/Python.framework/Versions/3.11/bin/:$PATH"
+          export PATH="$HOME/.local/share/ponyup/bin/:/Library/Frameworks/Python.framework/Versions/3.11/bin/:$PATH"
           bash .ci-scripts/release/arm64-apple-darwin-nightly.bash
         env:
           CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}

@@ -103,13 +103,13 @@ jobs:
     runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: install ponyc
-        run: bash .ci-scripts/macos-x86-install-pony-tools.bash release
+      - name: install pony tools
+        run: bash .ci-scripts/macos-install-pony-tools.bash release
       - name: brew install dependencies
         run: brew install coreutils
       - name: Test with most recent ponyc release
         run: |
-          export PATH="/tmp/ponyc/bin/:/tmp/corral/bin/:$PATH"
+          export PATH="$HOME/.local/share/ponyup/bin/:$PATH"
           make test
 
   arm64_macos:
@@ -117,11 +117,11 @@ jobs:
     runs-on: macos-15
     steps:
       - uses: actions/checkout@v4.1.1
-      - name: install ponyc
-        run: bash .ci-scripts/macos-arm64-install-pony-tools.bash release
+      - name: install pony tools
+        run: bash .ci-scripts/macos-install-pony-tools.bash release
       - name: brew install dependencies
         run: brew install coreutils
       - name: Test with most recent ponyc release
         run: |
-          export PATH="/tmp/ponyc/bin/:/tmp/corral/bin/:$PATH"
+          export PATH="$HOME/.local/share/ponyup/bin/:$PATH"
           make test
