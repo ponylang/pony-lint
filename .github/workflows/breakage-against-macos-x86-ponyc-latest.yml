@@ -19,7 +19,7 @@ jobs:
         run: brew install coreutils
       - name: Test with most recent ponyc release
         run: |
-          export PATH="/tmp/ponyc/bin/:$PATH"
+          export PATH="/tmp/ponyc/bin/:/tmp/corral/bin/:$PATH"
           make test config=debug
       - name: Send alert on failure
         if: ${{ failure() }}
