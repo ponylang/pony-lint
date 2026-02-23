@@ -1,0 +1,7 @@
+primitive Version
+  """
+  Returns the pony-lint version string. The placeholder is substituted by
+  the build system from the VERSION file.
+  """
+  fun apply(): String =>
+    "%%VERSION%%"

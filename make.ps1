@@ -34,7 +34,7 @@ elseif ($Arch -ieq 'arm64')
 }
 
 $target = "pony-lint" # The name of the target executable.
-$targetPath = "pony-lint" # The source package directory.
+$targetPath = "pony_lint" # The source package directory.
 $testPath = "../test" # The path of the tests package relative to $targetPath.
 $isLibrary = $false
 
@@ -104,6 +104,10 @@ function BuildTarget
   {
     if ($binaryTimestamp -lt $file.LastWriteTimeUtc)
     {
+      Write-Host "corral fetch"
+      $output = (corral fetch)
+      $output | ForEach-Object { Write-Host $_ }
+      if ($LastExitCode -ne 0) { throw "Error" }
       Write-Host "corral run -- ponyc $configFlag --cpu `"$CPU`" --output `"$buildDir`" --bin-name `"$target`" `"$srcDir`""
       $output = (corral run -- ponyc $configFlag --cpu "$CPU" --output "$buildDir" --bin-name "$target" "$srcDir")
       $output | ForEach-Object { Write-Host $_ }
@@ -128,6 +132,10 @@ function BuildTest
   {
     if ($testTimestamp -lt $file.LastWriteTimeUtc)
     {
+      Write-Host "corral fetch"
+      $output = (corral fetch)
+      $output | ForEach-Object { Write-Host $_ }
+      if ($LastExitCode -ne 0) { throw "Error" }
       $testDir = Join-Path -Path $srcDir -ChildPath $testPath
       Write-Host "corral run -- ponyc $configFlag --cpu `"$CPU`" --output `"$buildDir`" --bin-name `"test`" `"$testDir`""
       $output = (corral run -- ponyc $configFlag --cpu "$CPU" --output "$buildDir" --bin-name test "$testDir")
