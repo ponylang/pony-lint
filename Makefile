@@ -8,7 +8,7 @@ linker ?=
 PONYC_FLAGS ?=
 
 BUILD_DIR ?= build/$(config)
-SRC_DIR ?= pony-lint
+SRC_DIR ?= pony_lint
 binary := $(BUILD_DIR)/pony-lint
 
 ifdef config
@@ -79,6 +79,9 @@ test: $(binary)
 	corral run -- ponyc $(PONYC_FLAGS) $(LINKER) test -o $(BUILD_DIR) -b test
 	$(BUILD_DIR)/test --sequential
 
+lint: $(binary)
+	$(binary) $(SRC_DIR) test
+
 clean:
 	corral clean
 	rm -rf $(BUILD_DIR) $(GEN_FILES)
@@ -88,4 +91,4 @@ all: test $(binary)
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-.PHONY: all clean install test
+.PHONY: all clean install test lint

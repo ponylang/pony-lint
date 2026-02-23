@@ -1,7 +1,7 @@
 /.pony_test/
 /.vscode/
 /build/
-/pony-lint/version.pony
+/pony_lint/version.pony
 /_corral/
 /_repos/
 lock.json

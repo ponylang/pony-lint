@@ -4,6 +4,13 @@
     "description": "A linter for Pony",
     "version": "0.0.0"
   },
-  "packages": [],
-  "deps": []
+  "packages": [
+    "pony_lint"
+  ],
+  "deps": [
+    {
+      "locator": "github.com/ponylang/json-ng.git",
+      "version": "0.3.0"
+    }
+  ]
 }
