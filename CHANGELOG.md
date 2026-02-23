@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### Added
 
+- Add text-based linting framework and four style rules ([PR #4](https://github.com/ponylang/pony-lint/pull/4))
 
 ### Changed
 
